@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Button, buttonVariants } from "../components/ui/button";
-import { getAllBrands } from "./brands/brands.api";
+import { DeleteBrand, getAllBrands } from "./brands/brands.api";
 import {
   Card,
   CardContent,
@@ -44,6 +44,11 @@ export default function HomePage() {
     loadBrands(0);
   }, []);
 
+  const handDeleteBrand = async (id: number) => {
+    await DeleteBrand(id);
+    loadBrands(offset);
+    // alert(`Marca con id ${id} eliminada`);
+  };
   return (
     <>
       <div className="flex justify-between">
@@ -73,7 +78,12 @@ export default function HomePage() {
                 <Button variant="outline" className="mr-2">
                   Editar
                 </Button>
-                <Button variant="destructive">Eliminar</Button>
+                <Button
+                  variant="destructive"
+                  onClick={() => handDeleteBrand(brand.id)}
+                >
+                  Eliminar
+                </Button>
               </TableCell>
             </TableRow>
           ))}
