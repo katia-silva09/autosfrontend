@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Button, buttonVariants } from "../components/ui/button";
@@ -12,6 +13,7 @@ import { Brand } from "../interface/brand.interface";
 import {
   Table,
   TableBody,
+  TableCell,
   TableHead,
   TableHeader,
   TableRow,
@@ -25,7 +27,7 @@ interface BrandsResponse {
 }
 
 export default function HomePage() {
-  const [offser, setOffset] = useState(0);
+  const [offset, setOffset] = useState(0);
   const [limit] = useState(3);
   const [brandsData, setBrandsData] = useState<BrandsResponse>({
     data: [],
@@ -60,10 +62,45 @@ export default function HomePage() {
           </TableRow>
         </TableHeader>
 
-        <TableBody>{brandsData.data.map(brand)}</TableBody>
+        <TableBody>
+          {brandsData.data.map((brand) => (
+            <TableRow key={brand.id}>
+              <TableCell>{brand.id}</TableCell>
+              <TableCell>{brand.name}</TableCell>
+              <TableCell>{brand.description || "Sin descripción"}</TableCell>
+
+              <TableCell className="text-right">
+                <Button variant="outline" className="mr-2">
+                  Editar
+                </Button>
+                <Button variant="destructive">Eliminar</Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
       </Table>
+      <div className="flex items-center justify-center gap-4 mt-4">
+        <Button
+          variant="outline"
+          disabled={offset === 0}
+          onClick={() => loadBrands(offset - limit)}
+        >
+          Anterior
+        </Button>
+
+        <span className="text-sm text-gray-600">
+          Página {Math.floor(offset / limit) + 1} de{" "}
+          {Math.ceil(brandsData.total / limit)}
+        </span>
+
+        <Button
+          variant="outline"
+          disabled={offset + limit >= brandsData.total}
+          onClick={() => loadBrands(offset + limit)}
+        >
+          Siguiente
+        </Button>
+      </div>
     </>
   );
 }
-
-export default HomePage;
