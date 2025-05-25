@@ -24,14 +24,25 @@ export async function AddBrand(brandData: BrandData) {
 
   return await res.json();
 }
+export async function getBrandById(id: string): Promise<Brand> {
+  const response = await fetch(`http://localhost:4000/api/v1/brands/${id}`, {
+    cache: "no-store",
+  });
 
-export async function UpateBrand(id: number, brandData: BrandData) {
+  if (!response.ok) {
+    throw new Error("Error al obtener la marca");
+  }
+
+  return await response.json();
+}
+
+export async function UpdateBrand(id: string, newBrandData: any) {
   const res = await fetch(`http://localhost:4000/api/v1/brands/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(brandData),
+    body: JSON.stringify(newBrandData),
   });
   return await res.json();
 }

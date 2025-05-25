@@ -49,6 +49,7 @@ export default function HomePage() {
     loadBrands(offset);
     // alert(`Marca con id ${id} eliminada`);
   };
+
   return (
     <>
       <div className="flex justify-between">
@@ -76,7 +77,7 @@ export default function HomePage() {
 
               <TableCell className="text-right">
                 <Button variant="outline" className="mr-2">
-                  Editar
+                  <Link href={`/brands/${brand.id}/edit`}>Editar</Link>
                 </Button>
                 <Button
                   variant="destructive"
