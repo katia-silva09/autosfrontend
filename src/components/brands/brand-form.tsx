@@ -6,8 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { BrandData } from "@/interface/brand.interface";
-import { AddBrand } from "../brands.api";
 import { useRouter } from "next/navigation";
+import { AddBrand } from "../../app/api/brands.api";
 
 export function BrandForm() {
   const { register, handleSubmit } = useForm<BrandData>();
@@ -16,7 +16,7 @@ export function BrandForm() {
   const onSubmit = handleSubmit(async (data) => {
     console.log(data);
     await AddBrand(data);
-    router.push("/");
+    router.push("/dashboard/brands");
     router.refresh();
   });
 

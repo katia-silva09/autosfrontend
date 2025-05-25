@@ -36,7 +36,7 @@ export async function getBrandById(id: string): Promise<Brand> {
   return await response.json();
 }
 
-export async function UpdateBrand(id: string, newBrandData: any) {
+export async function UpdateBrand(id: string, newBrandData: BrandData) {
   const res = await fetch(`http://localhost:4000/api/v1/brands/${id}`, {
     method: "PUT",
     headers: {

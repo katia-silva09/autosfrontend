@@ -4,10 +4,10 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "../../../../components/ui/card";
+} from "../../../../../components/ui/card";
 import { get } from "http";
-import { BrandFormEdit } from "./brand-formedit";
-import { getBrandById } from "../../brands.api";
+import { getBrandById } from "../../../../api/brands.api";
+import BrandFormEdit from "../../../../../components/brands/brand-formedit";
 
 interface Props {
   params: {

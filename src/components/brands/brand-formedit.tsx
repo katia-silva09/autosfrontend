@@ -6,8 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { BrandData } from "@/interface/brand.interface";
-import { AddBrand, UpdateBrand } from "../../brands.api";
 import { useParams, useRouter } from "next/navigation";
+import { Updock } from "next/font/google";
+import { AddBrand, UpdateBrand } from "../../app/api/brands.api";
 
 export function BrandFormEdit({ brand }: any) {
   console.log(brand);
@@ -29,7 +30,7 @@ export function BrandFormEdit({ brand }: any) {
       console.log("create"), await AddBrand(data);
     }
 
-    router.push("/");
+    router.push("/dashboard/brands");
     router.refresh();
   });
 

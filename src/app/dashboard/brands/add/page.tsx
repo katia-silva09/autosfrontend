@@ -1,11 +1,6 @@
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "../../../components/ui/card";
-import BrandForm from "./brand-form";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import BrandForm from "../../../../components/brands/brand-form";
 
 function BrandsAddPage() {
   return (
